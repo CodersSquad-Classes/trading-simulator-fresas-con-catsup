@@ -34,10 +34,22 @@ public:
 
 private:
     //comparator for buy priority queue
-    struct BuyCmp;
+    struct BuyCmp {
+        bool operator()(const Order& a, const Order& b) const {
+            if (a.price != b.price)
+                return a.price < b.price; // Precio más alto primero
+            return a.id > b.id; // Mismo precio? El más antiguo primero
+        }
+    };
 
     //comparator for sell priority queue
-    struct SellCmp;
+    struct SellCmp {
+        bool operator()(const Order& a, const Order& b) const {
+            if (a.price != b.price)
+                return a.price > b.price; // Precio más bajo primero
+            return a.id > b.id; // Mismo precio? El más antiguo primero
+        }
+    };
 
     std::string symbol_;
 
