@@ -34,7 +34,7 @@ public:
 
 private:
     //comparator for buy priority queue
-    struct BuyCmp;
+    struct BuyCmp {
         bool operator()(const Order& a, const Order& b) const {
             if (a.price != b.price)
                 return a.price < b.price; 
@@ -42,7 +42,7 @@ private:
         }
     };
     //comparator for sell priority queue
-    struct SellCmp;
+    struct SellCmp {
         bool operator()(const Order& a, const Order& b) const {
             if (a.price != b.price)
                 return a.price > b.price; 
