@@ -5,25 +5,6 @@
 #include <chrono>
 
 
-//higher price = higher priority
-struct OrderBook::BuyCmp { 
-    bool operator()(const Order& a, const Order& b) const {
-        if (a.price != b.price)
-            return a.price < b.price;// here highest price first
-        return a.id > b.id; //here earliest order first
-    }
-};
-
-
-//lower proce = higher prpiority 
-struct OrderBook::SellCmp {
-    bool operator()(const Order& a, const Order& b) const {
-        if (a.price != b.price)
-            return a.price > b.price; //lowest price first
-        return a.id > b.id; //earliest first
-    }
-};
-
 OrderBook::OrderBook(const std::string& symbol)
     : symbol_(symbol), trades_executed_(0) {}
 
